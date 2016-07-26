@@ -1,11 +1,9 @@
 package com.example.kabinkale.myapplication;
 
         import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
         import android.graphics.Color;
-        import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
-        import android.widget.ImageView;
+
 
 
 public class HaarFilterAll{
@@ -34,11 +32,15 @@ public class HaarFilterAll{
         for (int i = 0; i <= (img.getHeight() - 24); i++) {                     //For a 24x24 Pixel image define height such that the last image to be extracted has atleast 24 Pixels to work with
 
             for (int j = 0; j <= (img.getWidth() - 24); j++) {                  //*For a 24x24 Pixel image define width such that the last image to be extracted has atleast 24 Pixels to work with
-                //Bitmap skinCheck = Bitmap.createBitmap(primaryImg, j, i, 24, 24);
+                Bitmap skinCheck = Bitmap.createBitmap(primaryImg, j, i, 24, 24);
+                count++;
+                if(SkinTest.hasEnoughSkin(skinCheck)==false)
+                    continue;
+
 
                 Bitmap sub = Bitmap.createBitmap(img, j, i, 24, 24);            //sub image starting point defined by i and j & 24x4 is the needed size for the sub image.
 
-                count++;
+
 
                 for (int k = 0; k < 24; k++) {
                     for (int l = 0; l < 24; l++) {
@@ -72,4 +74,6 @@ public class HaarFilterAll{
         }
 
     }
+
+
 }
